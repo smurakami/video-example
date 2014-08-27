@@ -1,13 +1,20 @@
 var players = [
-  '#player1',
-  '#player2',
-  '#player3',
-  '#player4',
+  'player1',
+  'player2',
+  'player3',
+  'player4',
+];
+
+var movies = [
+  'mov/sample1.mp4',
+  'mov/sample2.mp4',
+  'mov/sample3.mp4',
+  'mov/sample4.mp4',
 ];
 
 var play = function(index){
   if (index >= players.length) return;
-  var $player = $(players[index]);
+  var $player = $('#'+players[index]);
   $player.removeClass('hidden');
   $player.bind('ended', function(){
     if (index < players.length - 1) {
@@ -20,13 +27,13 @@ var play = function(index){
 
 $(function(){
   // 動画の再生を動的に生成
-  for (var i = 1, l = players.length; i <= l; i++){
-    var $player = $("<video height='240' id='player"+i+"' width='320'> <source src='mov/sample"+i+".mp4'></source> </video>")
+  for (var i = 0, l = players.length; i < l; i++){
+    var $player = $("<video height='240' id='"+players[i]+"' width='320'> <source src='"+movies[i]+"'></source></video>");
     $('#players').append($player);
   }
 
   for (var i = 0, l = players.length; i < l; i++){
-    $(players[i]).addClass('hidden');
+    $('#'+players[i]).addClass('hidden');
   }
   play(0);
 });
